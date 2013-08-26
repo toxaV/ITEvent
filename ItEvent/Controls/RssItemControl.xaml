@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="ItEvent.Controls.RssItemControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="100">
+
+    <Grid x:Name="LayoutRoot" Tap="LayoutRoot_Tap">
+        <Image Name="Logo" HorizontalAlignment="Left" Height="100" VerticalAlignment="Center" Width="100"/>
+        <TextBlock Name="Content" Margin="115,10,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="80"/>
+    </Grid>
+</UserControl>
