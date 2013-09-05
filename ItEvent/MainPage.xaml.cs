@@ -15,7 +15,8 @@ namespace ItEvent
     {
         public static FeedItem SelectedFeedItem;
 
-        private readonly ProgressIndicator progress;
+        private ProgressIndicator progress;
+        private const string RssUrl = @"http://dou.ua/calendar/feed/все%20темы/{0}";
         private readonly IRssService rssService = new RssService();
 
         // Constructor
@@ -23,25 +24,25 @@ namespace ItEvent
         {
             InitializeComponent();
 
-            Init();
+            InitApplicationBar();
 
-            string cityName = rssService.GetCityName();
+            SetProgressIndicator();
 
+            rssService.GetFeedItemsAsync(string.Format(RssUrl, rssService.GetCityName()), BindFeeds);
+
+            Caption.Text = rssService.GetCityName();
+        }
+
+        private void SetProgressIndicator()
+        {
             progress = new ProgressIndicator
             {
                 IsVisible = true,
                 IsIndeterminate = true,
-                Text = string.Format("Загружаем {0}...", cityName),
+                Text = string.Format("Загружаем {0}...", rssService.GetCityName()),
             };
 
             SystemTray.SetProgressIndicator(this, progress);
-
-
-            string url = string.Format(@"http://dou.ua/calendar/feed/все%20темы/{0}", cityName);
-
-            rssService.GetFeedItemsAsync(url, BindFeeds);
-
-            Caption.Text = cityName;
         }
 
         private void BindFeeds(List<FeedItem> feeds)
@@ -95,7 +96,7 @@ namespace ItEvent
             NavigationService.Navigate(new Uri("/EventInfo.xaml", UriKind.Relative));
         }
 
-        private void Init()
+        private void InitApplicationBar()
         {
             ApplicationBar = new ApplicationBar
             {
@@ -114,7 +115,7 @@ namespace ItEvent
             var marketPlaceReviewIconBton = new ApplicationBarIconButton
             {
                 IconUri = new Uri("/Assets/Icons/Dark/like.png", UriKind.Relative),
-                Text = "Ревью"
+                Text = "Оценить"
             };
 
             settingsBarIconButton.Click += settingsBarIconButton_Click;

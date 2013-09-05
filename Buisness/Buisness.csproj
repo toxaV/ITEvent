@@ -83,7 +83,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="CalendarWorker.cs" />
+    <Compile Include="WindowsPhoneTask.cs" />
     <Compile Include="Helpers\DateHepler.cs" />
     <Compile Include="RssProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

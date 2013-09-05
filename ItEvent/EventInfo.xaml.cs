@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.Phone.Shell;
-using Microsoft.Phone.Tasks;
+using Services;
 using Services.Implementation;
 
 namespace ItEvent
@@ -11,7 +11,7 @@ namespace ItEvent
         {
             InitializeComponent();
 
-            Init();
+            InitApplicationBar();
 
             if (MainPage.SelectedFeedItem != null)
             {
@@ -21,7 +21,7 @@ namespace ItEvent
             }
         }
 
-        private void Init()
+        private void InitApplicationBar()
         {
             ApplicationBar = new ApplicationBar
             {
@@ -52,18 +52,13 @@ namespace ItEvent
 
         private void shareIconButton_Click(object sender, EventArgs e)
         {
-            ShareLinkTask shareLinkTask = new ShareLinkTask();
-
-            shareLinkTask.Title = MainPage.SelectedFeedItem.Title;
-            shareLinkTask.LinkUri = new Uri(MainPage.SelectedFeedItem.Id, UriKind.Absolute);
-            shareLinkTask.Message = "Круто! Я пойду";
-
-            shareLinkTask.Show();
+            IWindowsPhoneTaskService calendarService = new CalWindowsPhoneTaskendarService();
+            calendarService.ShareLink(MainPage.SelectedFeedItem);
         }
 
         private void SaveToCalendarIconButtonOnClick(object sender, EventArgs eventArgs)
         {
-            CalendarService calendarService = new CalendarService();
+            IWindowsPhoneTaskService calendarService = new CalWindowsPhoneTaskendarService();
             calendarService.SaveToCalendar(MainPage.SelectedFeedItem);
         }
     }

@@ -2,8 +2,10 @@ using Entities;
 
 namespace Services
 {
-    public interface ICalendarService
+    public interface IWindowsPhoneTaskService
     {
         void SaveToCalendar(FeedItem feedItem);
+
+        void ShareLink(FeedItem feedItem);
     }
 }
