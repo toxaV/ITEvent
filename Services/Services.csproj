@@ -83,6 +83,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Implementation\CalendarService.cs" />
+    <Compile Include="ICalendarService.cs" />
     <Compile Include="Implementation\RssService.cs" />
     <Compile Include="IRssService.cs" />
     <Compile Include="ISettingsManager.cs" />

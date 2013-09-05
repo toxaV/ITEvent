@@ -2,6 +2,7 @@
 using Entities;
 using ItEvent.Controls;
 using Microsoft.Phone.Shell;
+using Microsoft.Phone.Tasks;
 using Services;
 using System;
 using System.Linq;
@@ -110,8 +111,22 @@ namespace ItEvent
                 Text = "Мой город"
             };
 
+            var marketPlaceReviewIconBton = new ApplicationBarIconButton
+            {
+                IconUri = new Uri("/Assets/Icons/Dark/like.png", UriKind.Relative),
+                Text = "Ревью"
+            };
+
             settingsBarIconButton.Click += settingsBarIconButton_Click;
+            marketPlaceReviewIconBton.Click += marketPlaceReviewIconBton_Click;
+
             ApplicationBar.Buttons.Add(settingsBarIconButton);
+            ApplicationBar.Buttons.Add(marketPlaceReviewIconBton);
+        }
+
+        void marketPlaceReviewIconBton_Click(object sender, EventArgs e)
+        {
+            new MarketplaceReviewTask().Show();
         }
 
         private void settingsBarIconButton_Click(object sender, EventArgs e)
