@@ -6,6 +6,7 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="clr-namespace:MSPToolkit.Controls;assembly=MSPToolkit"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -22,17 +23,13 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock TextTrimming="WordEllipsis" Name="Caption" FontSize="36" />
+            <TextBlock TextTrimming="WordEllipsis" Margin="12,0,0,0" Name="Caption" FontSize="36" />
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
         <Grid ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" x:Name="ContentPanel" Margin="14,10,10,-10" Grid.Row="1">
             <TextBlock Name ="Title" HorizontalAlignment="Left" Margin="15,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="80" Width="441" Grid.ColumnSpan="1"/>
-            <phone:WebBrowser Name="wb1" Background="Transparent" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" Margin="0,2.21,6.977,15.397" UseLayoutRounding="False" d:LayoutRounding="Auto" >
-                <phone:WebBrowser.RenderTransform>
-                    <CompositeTransform SkewY="0.228" TranslateY="0.718"/>
-                </phone:WebBrowser.RenderTransform>
-            </phone:WebBrowser>
+            <controls:HTMLViewer Name="SummaryBrowser"/>
         </Grid>
     </Grid>
 

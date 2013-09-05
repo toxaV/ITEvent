@@ -10,7 +10,7 @@
             {
                 Caption.Text = MainPage.SelectedFeedItem.Title;
 
-                wb1.NavigateToString(MainPage.SelectedFeedItem.Summary);
+                SummaryBrowser.Html = MainPage.SelectedFeedItem.Summary;
             }
         }
     }
