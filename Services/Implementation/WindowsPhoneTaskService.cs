@@ -1,9 +1,9 @@
-﻿using Buisness;
+﻿using Business;
 using Entities;
 
 namespace Services.Implementation
 {
-    public class CalWindowsPhoneTaskendarService : IWindowsPhoneTaskService
+    public class WindowsPhoneTaskService : IWindowsPhoneTaskService
     {
         public void SaveToCalendar(FeedItem feedItem)
         {

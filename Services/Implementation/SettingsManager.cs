@@ -4,7 +4,8 @@ namespace Services.Implementation
 {
     public class SettingsManager : ISettingsManager
     {
-        private string CityPropertyName = "city";
+        private const string CityPropertyName = "city";
+
         public void SetCityName(string cityName)
         {
             IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;

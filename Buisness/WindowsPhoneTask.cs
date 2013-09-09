@@ -2,7 +2,7 @@
 using Entities;
 using Microsoft.Phone.Tasks;
 
-namespace Buisness
+namespace Business
 {
     public class WindowsPhoneTask
     {
@@ -33,11 +33,12 @@ namespace Buisness
                 throw new Exception("feed item is null");
             }
 
-            ShareLinkTask shareLinkTask = new ShareLinkTask();
-
-            shareLinkTask.Title = feedItem.Title;
-            shareLinkTask.LinkUri = new Uri(feedItem.Id, UriKind.Absolute);
-            shareLinkTask.Message = "Круто! Я пойду";
+            ShareLinkTask shareLinkTask = new ShareLinkTask
+            {
+                Title = feedItem.Title,
+                LinkUri = new Uri(feedItem.Id, UriKind.Absolute),
+                Message = "Круто! Я пойду"
+            };
 
             shareLinkTask.Show();
         }

@@ -5,49 +5,37 @@ using System.Net;
 using System.ServiceModel.Syndication;
 using System.Xml;
 using Entities;
-using Buisness.Visitors;
 
-namespace Buisness
+namespace Business
 {
+    using Business.Visitors;
+
     public class RssProcessor
     {
-        private string RssUrl { get; set;}
-
-        public event Action<List<FeedItem>> BindFinished;
-
         public RssProcessor(string rssUrl)
         {
             RssUrl = rssUrl;
         }
+
+        public event Action<List<FeedItem>> BindFinished;
+
+        private string RssUrl { get; set; } 
 
         public void Bind()
         {
             WebClient webClient = new WebClient();
 
             // Subscribe to the DownloadStringCompleted event prior to downloading the RSS feed.
-            webClient.DownloadStringCompleted += webClient_DownloadStringCompleted;
+            webClient.DownloadStringCompleted += WebClientDownloadStringCompleted;
 
             webClient.DownloadStringAsync(new Uri(RssUrl));
         }
 
-        // Event handler which runs after the feed is fully downloaded.
-        private void webClient_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
-        {
-            if (e.Error != null)
-            {
-                BindFinished(null);
-            }
-            else
-            {
-                UpdtateFeedList(e.Result);
-            }
-        }
-
         // This method sets up the feed and binds it to our ListBox. 
-        public void UpdtateFeedList(string feedXML)
+        public void UpdateFeedList(string feedXml)
         {
             // Load the feed into a SyndicationFeed instance
-            StringReader stringReader = new StringReader(feedXML);
+            StringReader stringReader = new StringReader(feedXml);
             XmlReader xmlReader = XmlReader.Create(stringReader);
             SyndicationFeed syncFeed = SyndicationFeed.Load(xmlReader);
 
@@ -57,7 +45,7 @@ namespace Buisness
             {
                 string title = item.Title != null ? item.Title.Text : "{no title}";
 
-                FeedItem feedItem = new FeedItem()
+                FeedItem feedItem = new FeedItem
                 {
                     Id = item.Id,
                     Title = title,
@@ -72,6 +60,19 @@ namespace Buisness
             }
 
             BindFinished(feedItems);
+        }
+
+        // Event handler which runs after the feed is fully downloaded.
+        private void WebClientDownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
+        {
+            if (e.Error != null)
+            {
+                BindFinished(null);
+            }
+            else
+            {
+                UpdateFeedList(e.Result);
+            }
         }
     }
 }

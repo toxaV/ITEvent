@@ -1,19 +1,20 @@
 ﻿using System;
-using Buisness.Helpers;
-using Entities;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using Entities;
 
-namespace Buisness.Visitors
+namespace Business.Visitors
 {
+    using Business.Helpers;
+
     public class FeedItemVisitor
     {
-        readonly FeedItem feedItem;
-
         private const string ImagePattern = "<img.+?src=[\"'](.+?)[\"'].+?>";
         private const string AHrefPattern = "<a href=\"http://dou.ua/calendar.*?>.*?</a>";
+
+        private readonly FeedItem feedItem;
 
         public FeedItemVisitor(FeedItem feedItem)
         {
@@ -32,7 +33,7 @@ namespace Buisness.Visitors
 
             if (splitedTitle.Length > 2)
             {
-                FillCity(splitedTitle[splittedTitleElementCount - 1]);
+                // FillCity(splitedTitle[splittedTitleElementCount - 1]);
                 FillDate(splitedTitle[splittedTitleElementCount - 2]);
                 FillTitle(splitedTitle.Take(splittedTitleElementCount - 2));
 
@@ -44,7 +45,7 @@ namespace Buisness.Visitors
         private void FillDate(string date)
         {
             feedItem.DateString = date;
-            feedItem.Date = new DateHepler().Parse(date);
+            feedItem.Date = new DateHelper().Parse(date);
         }
 
         private void FillTitle(IEnumerable<string> titles)
@@ -68,11 +69,6 @@ namespace Buisness.Visitors
         {
             feedItem.Summary = Regex.Replace(feedItem.Summary, ImagePattern, string.Empty);
             feedItem.Summary = Regex.Replace(feedItem.Summary, AHrefPattern, string.Empty);
-        }
-
-        private void FillCity(string city)
-        {
-
         }
     }
 }

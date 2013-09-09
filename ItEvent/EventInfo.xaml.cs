@@ -44,21 +44,21 @@ namespace ItEvent
             };
 
             saveToCalendarIconButton.Click += SaveToCalendarIconButtonOnClick;
-            shareIconButton.Click += shareIconButton_Click;
+            shareIconButton.Click += this.ShareIconButtonClick;
 
             ApplicationBar.Buttons.Add(saveToCalendarIconButton);
             ApplicationBar.Buttons.Add(shareIconButton);
         }
 
-        private void shareIconButton_Click(object sender, EventArgs e)
+        private void ShareIconButtonClick(object sender, EventArgs e)
         {
-            IWindowsPhoneTaskService calendarService = new CalWindowsPhoneTaskendarService();
+            IWindowsPhoneTaskService calendarService = new WindowsPhoneTaskService();
             calendarService.ShareLink(MainPage.SelectedFeedItem);
         }
 
         private void SaveToCalendarIconButtonOnClick(object sender, EventArgs eventArgs)
         {
-            IWindowsPhoneTaskService calendarService = new CalWindowsPhoneTaskendarService();
+            IWindowsPhoneTaskService calendarService = new WindowsPhoneTaskService();
             calendarService.SaveToCalendar(MainPage.SelectedFeedItem);
         }
     }

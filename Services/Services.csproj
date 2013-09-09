@@ -92,9 +92,9 @@
     <Compile Include="Implementation\SettingsManager.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Buisness\Buisness.csproj">
+    <ProjectReference Include="..\Buisness\Business.csproj">
       <Project>{CBA951D5-4822-437B-88BE-8E78E84D4952}</Project>
-      <Name>Buisness</Name>
+      <Name>Business</Name>
     </ProjectReference>
     <ProjectReference Include="..\Entities\Entities.csproj">
       <Project>{571E7A2F-F8CA-48A9-8D25-9FA6A31235B8}</Project>

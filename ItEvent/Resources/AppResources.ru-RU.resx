@@ -134,4 +134,7 @@
   <data name="AppBarMenuItemText" xml:space="preserve">
     <value>Menu Item</value>
   </data>
+  <data name="ShareMessage" xml:space="preserve">
+    <value>Круто! Я пойду</value>
+  </data>
 </root>

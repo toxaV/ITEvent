@@ -30,7 +30,7 @@ namespace ItEvent
             citiesSelector.ItemsSource = cities;
         }
 
-        private void citiesSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void CitiesSelectorSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.AddedItems != null && e.AddedItems[0] != null)
             {

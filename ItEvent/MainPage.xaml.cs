@@ -1,12 +1,12 @@
-﻿using System.Windows;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
 using Entities;
 using ItEvent.Controls;
 using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
 using Services;
-using System;
-using System.Linq;
-using System.Collections.Generic;
 using Services.Implementation;
 
 namespace ItEvent
@@ -57,14 +57,15 @@ namespace ItEvent
 
                 IEnumerable<FeedItem> orderedItems = feeds.OrderBy(item => item.Date).Where(t => t.Date >= DateTime.Now);
 
-                foreach (FeedItem feedItem in orderedItems)
+                IEnumerable<FeedItem> feedItems = orderedItems as IList<FeedItem> ?? orderedItems.ToList();
+
+                foreach (RssItemControl rssItemControl in feedItems.Select(feedItem => new RssItemControl(feedItem)))
                 {
-                    var rssItemControl = new RssItemControl(feedItem);
-                    rssItemControl.OnTap += rssItemControl_OnTap;
-                    SPContent.Children.Add(rssItemControl);
+                    rssItemControl.OnTap += this.rssItemControl_OnTap;
+                    this.SPContent.Children.Add(rssItemControl);
                 }
  
-                UpdateTile(orderedItems.First());
+                UpdateTile(feedItems.First());
             }
             finally
             {
@@ -112,25 +113,25 @@ namespace ItEvent
                 Text = "Мой город"
             };
 
-            var marketPlaceReviewIconBton = new ApplicationBarIconButton
+            var marketPlaceReviewIconButton = new ApplicationBarIconButton
             {
                 IconUri = new Uri("/Assets/Icons/Dark/like.png", UriKind.Relative),
                 Text = "Оценить"
             };
 
-            settingsBarIconButton.Click += settingsBarIconButton_Click;
-            marketPlaceReviewIconBton.Click += marketPlaceReviewIconBton_Click;
+            settingsBarIconButton.Click += this.SettingsBarIconButtonClick;
+            marketPlaceReviewIconButton.Click += this.MarketPlaceReviewIconButtonClick;
 
             ApplicationBar.Buttons.Add(settingsBarIconButton);
-            ApplicationBar.Buttons.Add(marketPlaceReviewIconBton);
+            ApplicationBar.Buttons.Add(marketPlaceReviewIconButton);
         }
 
-        void marketPlaceReviewIconBton_Click(object sender, EventArgs e)
+        void MarketPlaceReviewIconButtonClick(object sender, EventArgs e)
         {
             new MarketplaceReviewTask().Show();
         }
 
-        private void settingsBarIconButton_Click(object sender, EventArgs e)
+        private void SettingsBarIconButtonClick(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/Settings.xaml", UriKind.Relative));
         }

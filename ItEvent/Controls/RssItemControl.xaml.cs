@@ -1,13 +1,11 @@
 ﻿using System;
-using Entities;
 using System.Windows.Media.Imaging;
+using Entities;
 
 namespace ItEvent.Controls
 {
     public partial class RssItemControl
     {
-        public event Action<RssItemControl, FeedItem> OnTap;
-
         private readonly FeedItem feedItem;
 
         public RssItemControl(FeedItem feedItem)
@@ -15,7 +13,9 @@ namespace ItEvent.Controls
             InitializeComponent();
 
             if (feedItem == null)
+            {
                 return;
+            }
 
             this.feedItem = feedItem;
 
@@ -33,7 +33,9 @@ namespace ItEvent.Controls
             }
         }
 
-        private void LayoutRoot_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        public new event Action<RssItemControl, FeedItem> OnTap;
+
+        private void LayoutRootTap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             if (OnTap != null)
             {

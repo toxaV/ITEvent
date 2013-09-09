@@ -9,7 +9,7 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     d:DesignHeight="100">
 
-    <Grid x:Name="LayoutRoot" Tap="LayoutRoot_Tap">
+    <Grid x:Name="LayoutRoot" Tap="LayoutRootTap">
         <Image Name="Logo" HorizontalAlignment="Left" Height="100" VerticalAlignment="Center" Width="100"/>
         <TextBlock Name="Content" Margin="115,10,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="80"/>
     </Grid>
