@@ -28,7 +28,7 @@ namespace Services.Implementation
 
             if (!settings.Contains(CityPropertyName))
             {
-                return "Киев";
+                return new CityService().GetDefaultCity();
             }
 
             return settings[CityPropertyName].ToString();

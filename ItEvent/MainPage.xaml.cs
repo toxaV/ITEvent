@@ -11,13 +11,15 @@ using Services.Implementation;
 
 namespace ItEvent
 {
+    using ItEvent.Resources;
+
     public partial class MainPage
     {
-        public static FeedItem SelectedFeedItem;
-
-        private ProgressIndicator progress;
         private const string RssUrl = @"http://dou.ua/calendar/feed/все%20темы/{0}";
+
         private readonly IRssService rssService = new RssService();
+
+        private ProgressIndicator progress; 
 
         // Constructor
         public MainPage()
@@ -33,13 +35,15 @@ namespace ItEvent
             Caption.Text = rssService.GetCityName();
         }
 
+        public static FeedItem SelectedFeedItem { get; private set; }
+
         private void SetProgressIndicator()
         {
             progress = new ProgressIndicator
             {
                 IsVisible = true,
                 IsIndeterminate = true,
-                Text = string.Format("Загружаем {0}...", rssService.GetCityName()),
+                Text = string.Format(AppResources.msgLoading, rssService.GetCityName()),
             };
 
             SystemTray.SetProgressIndicator(this, progress);
@@ -61,7 +65,7 @@ namespace ItEvent
 
                 foreach (RssItemControl rssItemControl in feedItems.Select(feedItem => new RssItemControl(feedItem)))
                 {
-                    rssItemControl.OnTap += this.rssItemControl_OnTap;
+                    rssItemControl.OnTap += this.RssItemControlOnTap;
                     this.SPContent.Children.Add(rssItemControl);
                 }
  
@@ -75,7 +79,7 @@ namespace ItEvent
 
         private void InternetConnectionError()
         {
-            MessageBox.Show("При получении данных возникли проблемы. Проверьте настройки интернет соединения и попробуйте еще раз.");
+            MessageBox.Show(AppResources.msgConnectionError);
         }
 
         private void UpdateTile(FeedItem feedItem)
@@ -83,14 +87,14 @@ namespace ItEvent
             var primaryTileData = new FlipTileData
             {
                 BackContent = feedItem.ToString(), 
-                Title = "IT event"
+                Title = AppResources.ApplicationTitle
             };
 
             ShellTile primaryTile = ShellTile.ActiveTiles.First();
             primaryTile.Update(primaryTileData);
         }
 
-        private void rssItemControl_OnTap(RssItemControl sender, FeedItem obj)
+        private void RssItemControlOnTap(RssItemControl sender, FeedItem obj)
         {
             SelectedFeedItem = obj;
 
@@ -110,13 +114,13 @@ namespace ItEvent
             var settingsBarIconButton = new ApplicationBarIconButton
             {
                 IconUri = new Uri("/Assets/Icons/Dark/feature.settings.png", UriKind.Relative),
-                Text = "Мой город"
+                Text = AppResources.msgMyCity
             };
 
             var marketPlaceReviewIconButton = new ApplicationBarIconButton
             {
                 IconUri = new Uri("/Assets/Icons/Dark/like.png", UriKind.Relative),
-                Text = "Оценить"
+                Text = AppResources.msgRate
             };
 
             settingsBarIconButton.Click += this.SettingsBarIconButtonClick;
@@ -126,7 +130,7 @@ namespace ItEvent
             ApplicationBar.Buttons.Add(marketPlaceReviewIconButton);
         }
 
-        void MarketPlaceReviewIconButtonClick(object sender, EventArgs e)
+        private void MarketPlaceReviewIconButtonClick(object sender, EventArgs e)
         {
             new MarketplaceReviewTask().Show();
         }

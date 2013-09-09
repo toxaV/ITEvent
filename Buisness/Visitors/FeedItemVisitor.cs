@@ -33,7 +33,6 @@ namespace Business.Visitors
 
             if (splitedTitle.Length > 2)
             {
-                // FillCity(splitedTitle[splittedTitleElementCount - 1]);
                 FillDate(splitedTitle[splittedTitleElementCount - 2]);
                 FillTitle(splitedTitle.Take(splittedTitleElementCount - 2));
 

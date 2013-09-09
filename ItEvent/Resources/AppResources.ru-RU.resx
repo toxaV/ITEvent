@@ -134,7 +134,25 @@
   <data name="AppBarMenuItemText" xml:space="preserve">
     <value>Menu Item</value>
   </data>
-  <data name="ShareMessage" xml:space="preserve">
+  <data name="msgConnectionError" xml:space="preserve">
+    <value>При получении данных возникли проблемы. Проверьте настройки интернет соединения и попробуйте еще раз.</value>
+  </data>
+  <data name="msgLoading" xml:space="preserve">
+    <value>Загружаем {0}</value>
+  </data>
+  <data name="msgMyCity" xml:space="preserve">
+    <value>Мой город</value>
+  </data>
+  <data name="msgRate" xml:space="preserve">
+    <value>Оценить</value>
+  </data>
+  <data name="msgSaveToCallendar" xml:space="preserve">
+    <value>Я пойду</value>
+  </data>
+  <data name="msgShare" xml:space="preserve">
+    <value>Рассказать</value>
+  </data>
+  <data name="msgShareWithFriends" xml:space="preserve">
     <value>Круто! Я пойду</value>
   </data>
 </root>

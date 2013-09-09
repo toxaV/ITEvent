@@ -26,7 +26,7 @@ namespace Business
             saveAppointmentTask.Show();
         }
 
-        public void ShareLink(FeedItem feedItem)
+        public void ShareLink(FeedItem feedItem, string message)
         {
             if (feedItem == null)
             {
@@ -37,7 +37,7 @@ namespace Business
             {
                 Title = feedItem.Title,
                 LinkUri = new Uri(feedItem.Id, UriKind.Absolute),
-                Message = "Круто! Я пойду"
+                Message = message
             };
 
             shareLinkTask.Show();

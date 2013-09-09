@@ -6,6 +6,6 @@ namespace Services
     {
         void SaveToCalendar(FeedItem feedItem);
 
-        void ShareLink(FeedItem feedItem);
+        void ShareLink(FeedItem feedItem, string message);
     }
 }

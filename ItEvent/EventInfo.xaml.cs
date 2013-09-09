@@ -5,6 +5,8 @@ using Services.Implementation;
 
 namespace ItEvent
 {
+    using ItEvent.Resources;
+
     public partial class EventInfo
     {
         public EventInfo()
@@ -34,13 +36,13 @@ namespace ItEvent
             var saveToCalendarIconButton = new ApplicationBarIconButton
             {
                 IconUri = new Uri("/Assets/Icons/Dark/feature.calendar.png", UriKind.Relative),
-                Text = "Я пойду"
+                Text = AppResources.msgSaveToCallendar
             };
 
             var shareIconButton = new ApplicationBarIconButton
             {
                 IconUri = new Uri("/Assets/Icons/Dark/share.png", UriKind.Relative),
-                Text = "Рассказать"
+                Text = AppResources.msgShare
             };
 
             saveToCalendarIconButton.Click += SaveToCalendarIconButtonOnClick;
@@ -53,7 +55,7 @@ namespace ItEvent
         private void ShareIconButtonClick(object sender, EventArgs e)
         {
             IWindowsPhoneTaskService calendarService = new WindowsPhoneTaskService();
-            calendarService.ShareLink(MainPage.SelectedFeedItem);
+            calendarService.ShareLink(MainPage.SelectedFeedItem, AppResources.msgShareWithFriends);
         }
 
         private void SaveToCalendarIconButtonOnClick(object sender, EventArgs eventArgs)

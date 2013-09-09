@@ -83,6 +83,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ICityService.cs" />
+    <Compile Include="Implementation\CityService.cs" />
     <Compile Include="Implementation\WindowsPhoneTaskService.cs" />
     <Compile Include="IWindowsPhoneTaskService.cs" />
     <Compile Include="Implementation\RssService.cs" />

@@ -1,33 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Controls;
 using Services;
 using Services.Implementation;
 
 namespace ItEvent
 {
+    using ItEvent.Resources;
+
     public partial class Settings
     {
         public Settings()
         {
             InitializeComponent();
+           
+            Caption.Text = AppResources.msgMyCity;
 
-            Caption.Text = "Мой город";
-
-            List<string> cities = new List<string>
-            {
-                "Киев",
-                "Днепропетровск",
-                "Львов",
-                "Одесса",
-                "Харьков",
-                "Донецк",
-                "Запорожье",
-                "Кривой Рог",
-                "Симферополь"
-            };
-
-            citiesSelector.ItemsSource = cities;
+            citiesSelector.ItemsSource = new CityService().GetSupportedCities();
         }
 
         private void CitiesSelectorSelectionChanged(object sender, SelectionChangedEventArgs e)

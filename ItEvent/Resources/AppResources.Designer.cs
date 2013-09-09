@@ -88,6 +88,69 @@ namespace ItEvent.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to При отриманні даних виникли проблеми. Перевірте налаштування інтернет з&apos;єднання і спробуйте ще раз..
+        /// </summary>
+        public static string msgConnectionError {
+            get {
+                return ResourceManager.GetString("msgConnectionError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Завантажуємо {0}.
+        /// </summary>
+        public static string msgLoading {
+            get {
+                return ResourceManager.GetString("msgLoading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Мое місто.
+        /// </summary>
+        public static string msgMyCity {
+            get {
+                return ResourceManager.GetString("msgMyCity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Оцінити.
+        /// </summary>
+        public static string msgRate {
+            get {
+                return ResourceManager.GetString("msgRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Я піду.
+        /// </summary>
+        public static string msgSaveToCallendar {
+            get {
+                return ResourceManager.GetString("msgSaveToCallendar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Розповісти.
+        /// </summary>
+        public static string msgShare {
+            get {
+                return ResourceManager.GetString("msgShare", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Круто! Я піду.
+        /// </summary>
+        public static string msgShareWithFriends {
+            get {
+                return ResourceManager.GetString("msgShareWithFriends", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LeftToRight.
         /// </summary>
         public static string ResourceFlowDirection {

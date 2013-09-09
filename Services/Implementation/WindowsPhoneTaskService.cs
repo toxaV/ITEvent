@@ -10,9 +10,9 @@ namespace Services.Implementation
             new WindowsPhoneTask().SaveAppointment(feedItem);
         }
 
-        public void ShareLink(FeedItem feedItem)
+        public void ShareLink(FeedItem feedItem, string message)
         {
-            new WindowsPhoneTask().ShareLink(feedItem);
+            new WindowsPhoneTask().ShareLink(feedItem, message);
         }
     }
 }
